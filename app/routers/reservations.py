@@ -7,7 +7,7 @@ from app.schemas.reservation import ReservationCreate, ReservationRead
 from app.services.reservation import is_conflicting_reservation
 
 
-router = APIRouter(prefix='/reservs', tags=['Reservations'])
+router = APIRouter(prefix='/reservations', tags=['Reservations'])
 
 
 @router.get('/', response_model=list[ReservationRead])
