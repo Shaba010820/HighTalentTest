@@ -18,7 +18,7 @@ def get_reservations(db: Session = Depends(get_db)):
 @router.post('/', response_model=ReservationRead, status_code=status.HTTP_201_CREATED)
 def create_reservation(reservation: ReservationCreate, db: Session = Depends(get_db)):
     if is_conflicting_reservation(db, reservation.table_id, reservation.reservation_time, reservation.duration_minutes):
-        raise HTTPException(status_code=404, detail='Стол уже забронирован на этот период времени')
+        raise HTTPException(status_code=400, detail='Стол уже забронирован на этот период времени')
 
     db_reservation = Reservation(**reservation.dict())
     db.add(db_reservation)
